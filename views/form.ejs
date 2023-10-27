@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bootstrap Form</title>
+    <!-- Add Bootstrap CSS (you should have Bootstrap linked in your project) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Extracted data</h2>
+                <h3>Please verify the details</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<%= extractedData.uname %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" value="<%= extractedData.email %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="tel" class="form-control" id="mobile" name="mobile" value="<%= extractedData.mobile %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="qualification">Highest Qualification:</label>
+                        <input type="text" class="form-control" id="qualification" name="qualification" value="<%= extractedData.qualification %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="college">College:</label>
+                        <input type="text" class="form-control" id="college" name="college" value="<%= extractedData.college %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="specialization">Specialization/Branch:</label>
+                        <input type="text" class="form-control" id="specialization" name="specialization" value="<%= extractedData.specialization %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="graduationYear">Year of Graduation:</label>
+                        <input type="number" class="form-control" id="graduationYear" name="graduationYear" value="<%= extractedData.graduationYear %>">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS (you should have Bootstrap linked in your project) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
