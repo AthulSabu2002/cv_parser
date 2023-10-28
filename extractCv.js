@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/user', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index'); // Renders the 'template.ejs' file with data
 });
 
