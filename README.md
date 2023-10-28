@@ -26,7 +26,7 @@ You can install these dependencies using npm or yarn.
 
 
 
-Features
+##Features
 The application provides the following features:
 
 Parsing of resume data from PDF files.
@@ -40,7 +40,7 @@ extractCv.js: Module containing functions for extracting resume data.
 README.md: This documentation file.
 
 
-Acknowledgments
+##Acknowledgments
 The application uses the pdf-parse library to extract text from PDF files.
 The compromise library is used for natural language processing.
 Feel free to customize and expand this application to suit your specific needs.
