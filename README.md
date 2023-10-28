@@ -38,8 +38,7 @@ views/: Directory containing EJS templates for rendering HTML.
 public/: Directory for serving static assets like CSS.
 extractCv.js: Module containing functions for extracting resume data.
 README.md: This documentation file.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 Acknowledgments
 The application uses the pdf-parse library to extract text from PDF files.
