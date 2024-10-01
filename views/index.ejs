@@ -1,102 +1,235 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Parser</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-  <title>Resume Parser</title>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #3F3D56;
+            --accent-color: #F50057;
+            --background-color: #F0F2F5;
+            --text-color: #333;
+        }
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="/css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="/css/responsive.css" rel="stylesheet" />
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2.5rem;
+        }
+
+        .upload-area {
+            border: 3px dashed var(--primary-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+
+        .upload-area:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-area.dragover {
+            background-color: rgba(108, 99, 255, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .upload-icon {
+            font-size: 64px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-text {
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .file-types {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 0, 87, 0.4);
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, .5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+
+        .submit-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
-            <img src="/images/logo.png" alt="" />
-            <span>
-              Resume Parser
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </nav>
-      </div>
-    </header>
-    <section class="slider_section ">
-      <div class="carousel_btn-container">
-       
-      </div>
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-5 offset-md-1">
-                  <div class="detail-box">
-                    <h1>
-                      Submit Your Resume here
-                    </h1>
-                    <p>
-                      Upload your cv/resume in pdf format here to see the magic!
-                      You will get the data erxtracted within seconds...
-                    </p>
-                    <div class="btn-box">
-                      <form action="/upload" method="post" enctype="multipart/form-data">
-                        <label for="resume" class="form-label">Upload Resume (PDF only):</label>
-                        <input type="file" id="resume" class="form-file" name="resume" accept=".pdf" required>
-                        <input type="submit" value="submit" title="submit">
-                      </form>
-                     
-                    </div>
-                  </div>
-                </div>
-                <div class="offset-md-1 col-md-4 img-container">
-                  <div class="img-box">
-                    <img src="/images/slider-img.png" alt="">
-                  </div>
-                </div>
-              </div>
+    <div class="container">
+        <h1>CV Parser</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📄</div>
+                <label for="resume" class="upload-text">Upload Resume (PDF only)</label>
+                <p class="file-types">Drag & Drop your CV here or click to upload</p>
+                <input type="file" id="resume" class="file-input" name="resume" accept=".pdf" required>
             </div>
-          </div>
-          
-         
-        </div>
+            <input type="submit" value="Submit" title="Submit" class="submit-btn" id="submitBtn">
+        </form>
+    </div>
 
-      </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('resume');
+            const submitBtn = document.getElementById('submitBtn');
+            const uploadIcon = document.querySelector('.upload-icon');
 
-    </section>
-   
-  </div>
+            gsap.to(container, {duration: 1, opacity: 1, y: 0, ease: "power3.out"});
+            gsap.to(submitBtn, {duration: 0.5, opacity: 1, delay: 0.5});
 
-  <script src="/js/jquery-3.4.1.min.js"></script>
-  <script src="/js/bootstrap.js"></script>
-  <script src="/js/custom.js"></script>
+            gsap.to(uploadIcon, {
+                y: -10,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
 
+            uploadArea.addEventListener('click', () => fileInput.click());
 
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const fileName = files[0].name;
+                    document.querySelector('.file-types').textContent = `File selected: ${fileName}`;
+                    gsap.to(uploadIcon, {
+                        scale: 1.2,
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 1,
+                        ease: "power1.inOut"
+                    });
+                }
+            }
+
+            submitBtn.addEventListener('click', (e) => {
+                if (!fileInput.files.length) {
+                    e.preventDefault();
+                    alert('Please select a file before submitting.');
+                } else {
+                    gsap.to(submitBtn, {
+                        scale: 0.95,
+                        duration: 0.1,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
+            });
+        });
+    </script>
 </body>
-</body>
-
 </html>

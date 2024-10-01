@@ -3,61 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Bootstrap Form</title>
-    <!-- Add Bootstrap CSS (you should have Bootstrap linked in your project) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>CV Data Verification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --form-background: #ffffff;
+            --input-background: #f7f9fa;
+            --input-border: #bdc3c7;
+            --input-focus: #3498db;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .cv-form {
+            background-color: var(--form-background);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--input-border);
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--input-background);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.25);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 12px;
+        }
+
+        .form-footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .cv-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .form-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center">Extracted data</h2>
-                <h3>Please verify the details</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<%= extractedData.uname %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<%= extractedData.email %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number:</label>
-                        <input type="tel" class="form-control" id="mobile" name="mobile" value="<%= extractedData.mobile %>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gender">Gender:</label>
-                        <select class="form-control" id="gender" name="gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="qualification">Highest Qualification:</label>
-                        <input type="text" class="form-control" id="qualification" name="qualification" value="<%= extractedData.qualification %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="college">College:</label>
-                        <input type="text" class="form-control" id="college" name="college" value="<%= extractedData.college %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="specialization">Specialization/Branch:</label>
-                        <input type="text" class="form-control" id="specialization" name="specialization" value="<%= extractedData.specialization %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="graduationYear">Year of Graduation:</label>
-                        <input type="number" class="form-control" id="graduationYear" name="graduationYear" value="<%= extractedData.graduationYear %>">
-                    </div>
-                </form>
+    <div class="container">
+        <header class="form-header">
+            <h1 class="form-title">Extracted Data</h1>
+            <h2 class="form-subtitle">Please verify the details</h2>
+        </header>
+        <form class="cv-form">
+            <div class="form-group">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-input" id="name" name="name" value="<%= extractedData.uname %>" required>
             </div>
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-input" id="email" name="email" value="<%= extractedData.email %>" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="form-label">Mobile Number:</label>
+                <input type="tel" class="form-input" id="mobile" name="mobile" value="<%= extractedData.mobile %>" required>
+            </div>
 
-    <!-- Add Bootstrap JS (you should have Bootstrap linked in your project) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <div class="form-group">
+                <label for="qualification" class="form-label">Highest Qualification:</label>
+                <input type="text" class="form-input" id="qualification" name="qualification" value="<%= extractedData.qualification %>">
+            </div>
+            <div class="form-group">
+                <label for="college" class="form-label">College:</label>
+                <input type="text" class="form-input" id="college" name="college" value="<%= extractedData.college %>">
+            </div>
+            <div class="form-group">
+                <label for="specialization" class="form-label">Specialization/Branch:</label>
+                <input type="text" class="form-input" id="specialization" name="specialization" value="<%= extractedData.specialization %>">
+            </div>
+            <div class="form-group">
+                <label for="graduationYear" class="form-label">Year of Graduation:</label>
+                <input type="number" class="form-input" id="graduationYear" name="graduationYear" value="<%= extractedData.graduationYear %>">
+            </div>
+            <footer class="form-footer">
+                <p>Please note that the extracted data may not be 100% accurate. Kindly review and correct any information as necessary.</p>
+            </footer>
+        </form>
+    </div>
 </body>
 </html>
