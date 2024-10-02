@@ -23,7 +23,7 @@ You can install these dependencies using npm or yarn.
 
    ```bash
    npm install
-
+   ```
 
 
 ##Features
